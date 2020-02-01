@@ -16,7 +16,7 @@ const mapMock = {
       //            Pattern: [0,1,0,0,0,1,...] // optional
     },
     {
-      Name: 'Nach Rechts drehen',
+      Name: 'Drehen',
       Action: 'turnright', // move, jump, ... 
       Sound: 'openhat',  // hat, clap...
       Show: true
