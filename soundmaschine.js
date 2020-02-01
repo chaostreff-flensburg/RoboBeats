@@ -15,7 +15,7 @@ function NewSoundMaschine() {
     kick: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/kick.[ogg]',
     openhat: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/openhat.[ogg]',
   }, {
-    volume: -10,
+    volume: 0,
     fadeOut: '64n'
   }).toMaster();
 
