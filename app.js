@@ -53,6 +53,7 @@ timelineRenderer.onClickPlay(() => {
 timelineRenderer.onClickReset(() => {
   sound.Reset();
   gamearea.Reset();
+  gameRenderer.Reset();
 })
 patternRenderer.onClickTick(sound.ToggleTick)
 
