@@ -79,28 +79,24 @@ function NewPatternmaschineRenderer() {
 		svg.setAttributeNS(null, 'y', trackNumber*60)
 		svg.setAttributeNS(null, 'id', 'track_'+trackNumber)
 
-		svg.appendChild(self.createTrackName(trackNumber, trackName))
+		svg.appendChild(createTrackName(trackNumber, trackName))
 
 		for (var i = 0; i < self.ticks; i++) {
-			svg.appendChild(self.createTick(trackNumber, i))
+			svg.appendChild(createTick(trackNumber, i))
 		}
 
 		return svg
 	}
 
-	self.createTrackName = function (trackNumber, trackName) {
+	function createTrackName (trackNumber, trackName) {
 		var svg = document.createElementNS(ns, 'svg')
 		svg.setAttributeNS(null, 'x', 0)
 		svg.setAttributeNS(null, 'y', 0)
 		svg.setAttributeNS(null, 'id', 'trackname_'+trackNumber)
 
 		// background
-		var rect = document.createElementNS(ns, 'rect')
-		rect.setAttributeNS(null, 'width', 124)
-		rect.setAttributeNS(null, 'height', 58)
-		rect.setAttributeNS(null, 'x', 0)
-		rect.setAttributeNS(null, 'y', 2)
-		rect.setAttributeNS(null, 'fill', '#f06')
+		const id = 'trackname_'+trackNumber+'_bg'
+		const rect = NewSVG(id).Position(0,2).Size(124,58).Class('trackname_bg').Rect()
 		svg.appendChild(rect)
 
 		// text
@@ -117,14 +113,9 @@ function NewPatternmaschineRenderer() {
 		return svg
 	}
 
-	self.createTick = function (trackNumber, tickNumber) {
-		var rect = document.createElementNS(ns, 'rect')
-		rect.setAttributeNS(null, 'x', 126 + tickNumber*60)
-		rect.setAttributeNS(null, 'y', 2)
-		rect.setAttributeNS(null, 'width', 58)
-		rect.setAttributeNS(null, 'height', 58)
-		rect.setAttributeNS(null, 'class', 'tick')
-		rect.setAttributeNS(null, 'id', 'tick_'+trackNumber+'_'+tickNumber)
+	function createTick (trackNumber, tickNumber) {
+		const id = 'tick_'+trackNumber+'_'+tickNumber
+		const rect = NewSVG(id).Position(126 + tickNumber*60,2).Size(58,58).Class('tick').Rect()
 
 		rect.addEventListener("click", self.toggleTick);
 

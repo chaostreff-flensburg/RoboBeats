@@ -11,14 +11,14 @@ const mapMock = {
         {
             Name: "Laufen",
             Action: "move", // move, jump, ... 
-            Sound: "openhat",  // hat, clap...
+            Sound: "kick",  // hat, clap...
             Show: true,
 //            Pattern: [0,1,0,0,0,1,...] // optional
         },
         {
             Name: "Springen",
             Action: "jump", // move, jump, ... 
-            Sound: "kick",  // hat, clap...
+            Sound: "openhat",  // hat, clap...
             Show: true,
 //            Pattern: [0,1,0,0,0,1,...] // optional
         },
@@ -37,24 +37,26 @@ const mapMock = {
 }
 
 const gameareaMock = NewGameareaMock()
-const patternMachine = NewPatternMachine(gameareaMock)
-const timeline = NewTimeline(patternMachine)
+const sound = NewSoundMaschine()
+const patternRenderer = NewPatternmaschineRenderer()
+const timelineRenderer = NewTimelineRenderer()
 
-const sounds = NewSoundMaschine()
-const renderer = NewPatternmaschineRenderer()
-
-renderer.onClickTick(patternMachine.ToggleTick)
-
-patternMachine.onSetMap((map) => {
-	renderer.SetMap(map)
-	sounds.SetMap(map)
+timelineRenderer.onClickPlay(() => {
+    sound.TogglePlay()
 })
-patternMachine.onToggleTick(renderer.SetTickState)
-patternMachine.onPlayTick((tickNumber, column) => {
-	renderer.SetCurrentTick(tickNumber)
-	sounds.PlayCurrentTick(tickNumber, column)
+timelineRenderer.onClickReset(() => {
+    sound.Reset()
+    gameareaMock.Reset()
 })
+patternRenderer.onClickTick(sound.ToggleTick)
 
-timeline.Reset()
-timeline.SetMap(mapMock)
-timeline.Run()
+sound.onSetMap((map) => {
+    patternRenderer.SetMap(map)
+    gameareaMock.SetMap(map)
+})
+sound.onPlayTick((tickNumber, column) => {
+    patternRenderer.SetCurrentTick(tickNumber, column)
+    gameareaMock.PlayTick(tickNumber, column)
+})
+sound.onToggleTick(patternRenderer.SetTickState)
+sound.SetMap(mapMock)
