@@ -93,6 +93,7 @@ gamearea.onSuccess(() => {
 });
 patternRenderer.onClickTick(sound.ToggleTick);
 
+sound.onChangedPlaymode(timelineRenderer.changedPlaymode)
 sound.onSetMap((map) => {
   const div = document.getElementById('error');
   div.innerHTML = '';

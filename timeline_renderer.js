@@ -121,6 +121,17 @@ function NewTimelineRenderer() {
     self.startSVG.setAttribute('visibility', 'hidden')
   }
 
+  self.changedPlaymode = function (isRunning) {
+    if (isRunning) {
+      self.stopSVG.setAttribute('visibility', 'visible')
+      self.startSVG.setAttribute('visibility', 'hidden')
+      return
+    }
+
+    self.stopSVG.setAttribute('visibility', 'hidden')
+    self.startSVG.setAttribute('visibility', 'visible')
+  }
+
   self.clickReset = function (e) {
     if (self.clickResetFn != null) {
       self.clickResetFn();

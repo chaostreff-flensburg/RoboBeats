@@ -8,6 +8,7 @@ function NewSoundMaschine() {
       setMap: null,
       toggleTick: null,
       playTick: null,
+      changedPlaymode: null,
     }
   }
 
@@ -52,6 +53,10 @@ function NewSoundMaschine() {
 
   self.onPlayTick = function (fn) {
     self.onFn.playTick = fn;
+  }
+
+  self.onChangedPlaymode = function (fn) {
+    self.onFn.changedPlaymode = fn
   }
 
   self.SetMap = function (map) {
@@ -105,11 +110,17 @@ function NewSoundMaschine() {
   self.Play = function () {
     Tone.Transport.start();
     self.playing = true;
+    if (self.onFn.changedPlaymode(self.playing) != null) {
+      self.onFn.changedPlaymode(self.playing)
+    }
   }
 
   self.Stop = function () {
     Tone.Transport.stop();
     self.playing = false;
+    if (self.onFn.changedPlaymode(self.playing) != null) {
+      self.onFn.changedPlaymode(self.playing)
+    }
   }
 
   self.ToggleTick = function (trackNumber, tickNumber) {
