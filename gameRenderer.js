@@ -17,8 +17,9 @@ function NewGameRenderer () {
     });
   };
 
-  self.Render = function (robo) {
-    // Zeige Level anhand von self.Level
+  self.Render = function (Robo) {
+    const field = document.getElementById('f_' + Robo.x + '_' + Robo.y);
+    field.innerHTML = 'R';
     // Packe Robo an robo.x & robo.y mit Richtung robo.r
   };
 
