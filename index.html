@@ -12,8 +12,14 @@
 				color: #3B7DBB;
 			}
 			.container {
-				max-width: 1100px;
-				margin: 120px auto;
+				margin: 80px 20px;
+			}
+
+			@media only screen and (min-width: 1100px) {
+				.container {
+					width: 1100px;
+					margin: 120px auto;
+				}
 			}
 
 			.clear {
@@ -24,6 +30,7 @@
 				float: right;
 				text-align: right;
 				margin: 40px 10px 100px;
+				overflow: hidden;
 			}
 
 			#meta {
@@ -60,6 +67,10 @@
 			}
 			#playbutton_bg, #stopbutton_bg, #resetbutton_bg {
 				cursor: pointer;
+			}
+
+			#patternmachine > svg {
+				width: 100%;
 			}
 
 			.footer {

@@ -60,10 +60,12 @@ function NewPatternmaschineRenderer() {
   }
 
   self.createPatternmachine = function () {
+    const w = 124 + self.ticks * 60;
+    const h = self.tracks.length * 60 + 60;
     var div = document.getElementById('patternmachine');
     var svg = document.createElementNS(ns, 'svg');
-    svg.setAttributeNS(null, 'width', 124 + self.ticks * 60);
-    svg.setAttributeNS(null, 'height', self.tracks.length * 60 + 60);
+    svg.setAttributeNS(null, 'width', w);
+    svg.setAttributeNS(null, 'viewBox', '0 0 ' + w + ' ' + h);
 
     div.appendChild(svg);
 
