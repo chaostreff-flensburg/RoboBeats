@@ -33,7 +33,7 @@ function NewGamearea() {
   self.PlayTick = (Tick, Tracks) => {
     var status = 1;
     Tracks.forEach((e, i) => {
-      if (e > 0) {
+      if (e > 0) { // Aktiv
         if (self.Tracks[i].Show) {
           //console.log(self.Tracks[i].Action);
           switch (self.Tracks[i].Action) {
@@ -44,7 +44,7 @@ function NewGamearea() {
                 case 'left': self.Robo.y -= 1; break;
                 case 'right': self.Robo.y += 1; break;
               }
-              if (self.Robo.x < 0 || self.Robo.y < 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 0) {
+              if (self.Robo.x < 0 || self.Robo.y < 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 5 || self.LevelClone[self.Robo.x][self.Robo.y] === 3) {
                 status = -1;
               }
               break;
@@ -78,9 +78,27 @@ function NewGamearea() {
           }
           console.log(self.LevelClone);
         } else {
+          if (self.Tracks[i].Name === 4) { // Lava Aktiv setzen
+            self.Map.Level.forEach((rows, x) => {
+              rows.forEach((v, y) => {
+                if (v === 4) {
+                  self.LevelClone[x][y] = 5; // Lava Aktiv!
+                }
+              });
+            });
+          }
           console.log(self.Tracks[i].Name);
           // Kommt später
         }
+      } else { // Nicht aktiv
+        if (self.Tracks[i].Name === 4) { // Lava deAktiv setzen
+          self.Map.Level.forEach((rows, x) => {
+            rows.forEach((v, y) => {
+              if (v === 4) {
+                self.LevelClone[x][y] = 4; // Lava NICHT Aktiv!
+              }
+            });
+          });
       }
     });
     return status;
