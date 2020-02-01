@@ -1,4 +1,4 @@
-function NewGamearea() {
+function NewGamearea () {
   const self = {
     Map: {},
     LevelClone: [],
@@ -15,6 +15,10 @@ function NewGamearea() {
         }
       });
     });
+  };
+
+  self.GetLevelClone = function () {
+    return self.LevelClone;
   };
 
   self.SetMap = function (MapJson) {
@@ -35,7 +39,6 @@ function NewGamearea() {
     Tracks.forEach((e, i) => {
       if (e > 0) { // Aktiv
         if (self.Tracks[i].Show) {
-          //console.log(self.Tracks[i].Action);
           switch (self.Tracks[i].Action) {
             case 'move':
               switch (self.Robo.d) {
@@ -76,7 +79,6 @@ function NewGamearea() {
                 case 8: status = -1;
               } break;
           }
-          console.log(self.LevelClone);
         } else {
           if (self.Tracks[i].Name === 4) { // Lava Aktiv setzen
             self.Map.Level.forEach((rows, x) => {
@@ -87,8 +89,6 @@ function NewGamearea() {
               });
             });
           }
-          console.log(self.Tracks[i].Name);
-          // Kommt später
         }
       } else { // Nicht aktiv
         if (self.Tracks[i].Name === 4) { // Lava deAktiv setzen
@@ -99,7 +99,8 @@ function NewGamearea() {
               }
             });
           });
-      }
+        }
+      };
     });
     return status;
   };
@@ -108,6 +109,7 @@ function NewGamearea() {
 }
 
 // Dev test
+/*
 const Gamearea = NewGamearea();
 Gamearea.SetMap({
   Name: 'Level 1',
@@ -152,8 +154,8 @@ var steps = [
   [1, 0, 0, 0],
   [1, 0, 0, 0],
   [0, 0, 1, 0],
-  [0, 0, 0, 1],
   [1, 0, 0, 0],
+  [0, 0, 0, 1],
   [1, 0, 0, 0],
   [0, 1, 0, 0],
   [1, 0, 0, 0]
@@ -161,8 +163,14 @@ var steps = [
 var tmp;
 for (let i = 1; i < 9; i++) {
   tmp = Gamearea.PlayTick(i, steps[i - 1]);
+  Gamearea.GetLevelClone().forEach((rows, x) => {
+    console.log(rows);
+  });
+  console.log(Gamearea.Robo);
+  console.log('-------------');
   if (tmp === -1) {
     Gamearea.Reset();
     console.log('reset');
   }
 }
+*/

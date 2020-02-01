@@ -1,6 +1,28 @@
 <html>
 	<head>
+		<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
 		<style type="text/css">
+			body {
+				background: #0d1a57;
+				background: -moz-linear-gradient(45deg,  #0d1a57 0%, #080741 100%);
+				background: -webkit-linear-gradient(45deg,  #0d1a57 0%,#080741 100%);
+				background: linear-gradient(45deg,  #0d1a57 0%,#080741 100%);
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d1a57', endColorstr='#080741',GradientType=1 );
+				font-family: 'IBM Plex Sans', sans-serif;
+				color: #3B7DBB;
+			}
+			.container {
+				max-width: 1100px;
+				margin: 20px auto;
+			}
+			.footer {
+				text-align: right;
+			}
+			.footer__logo {
+				width: 90px;
+				display: inline-block;
+				padding: 0px 10px;
+			}
 			.trackname__text {
 				stroke: none;
 			    pointer-events: none;
@@ -26,16 +48,22 @@
 		</style>
 	</head>
 	<body>
-		<!-- Gamearea -->
-		<!-- Timeline -->
-		<div id="timeline">
-		</div>
-		<!-- PatternMachine -->
-		<div id="patternmachine">
+		<div class="container">
+			<!-- Gamearea -->
+			<!-- Timeline -->
+			<div id="timeline">
+			</div>
+			<!-- PatternMachine -->
+			<div id="patternmachine">
+			</div>
+			<!-- Footer -->
+			<footer class="footer">
+				Created with &heartsuit; at <img class="footer__logo" src="media/gg_logo.png" alt="Global Game Jam 2020">
+			</footer>
 		</div>
 		<script type="text/javascript" src="tone.js"></script>
 		<script type="text/javascript" src="svg.js"></script>
-		<script type="text/javascript" src="mock.js"></script>
+		<script type="text/javascript" src="gamearea.js"></script>
 		<script type="text/javascript" src="soundmaschine.js"></script>
 		<script type="text/javascript" src="patternmaschine_renderer.js"></script>
 		<script type="text/javascript" src="timeline_renderer.js"></script>
