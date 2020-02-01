@@ -32,7 +32,7 @@ function NewPatternmaschineRenderer() {
     }
 
     if (state == TICK_DEACTIVE) {
-      el.className.baseVal = 'tick'
+      el.className.baseVal = 'tick';
       return;
     }
 
