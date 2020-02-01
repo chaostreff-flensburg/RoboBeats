@@ -63,9 +63,10 @@ timelineRenderer.onClickReset(() => {
   gameRenderer.Reset();
 })
 gamearea.onError(() => {
-  sound.Reset();
-  gamearea.Reset();
-  gameRenderer.Reset();
+  //sound.Reset();
+  //gamearea.Reset();
+  //gameRenderer.Reset();
+  // Error only stop
   sound.TogglePlay();
 });
 patternRenderer.onClickTick(sound.ToggleTick);
