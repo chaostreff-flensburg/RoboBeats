@@ -137,7 +137,7 @@ function NewPatternmaschineRenderer() {
       // text
       var text = document.createElementNS(ns, 'text');
       text.setAttributeNS(null, 'x', 126 + i * 60 + 30);
-      text.setAttributeNS(null, 'y', 22);
+      text.setAttributeNS(null, 'y', 25);
       text.setAttributeNS(null, 'width', 58);
       text.setAttributeNS(null, 'height', 58);
       text.setAttributeNS(null, 'text-anchor', 'middle');
