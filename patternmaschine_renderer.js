@@ -82,7 +82,7 @@ function NewPatternmaschineRenderer() {
     svg.appendChild(createTrackName(trackNumber, trackName));
 
     for (let i = 0; i < self.ticks; i++) {
-      svg.appendChild(createTick(trackNumber, i));
+      svg.appendChild(self.createTick(trackNumber, i));
     }
 
     return svg;
