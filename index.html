@@ -124,6 +124,19 @@
 				height: 64px;
 				width: 64px;
 			}
+
+			#editor {
+				display: none;
+			}
+
+			#editor h2 {
+				margin: 15px 0 10px;
+			}
+
+			#editor_text {
+				width: 100%;
+				min-height: 500px;
+			}
 		</style>
 	</head>
 	<body>
@@ -151,10 +164,17 @@
 			<!-- PatternMachine -->
 			<div id="patternmachine">
 			</div>
+			<!-- Editor -->
+			<div id="editor">
+				<h2>Editor</h2>
+				<textarea id="editor_text"></textarea>
+				<input type="submit" name="submit" value="Load" id="editor_send">
+			</div>
 			<!-- Footer -->
 			<footer class="footer">
 				<div class="footer__left">
 					<a href="https://github.com/chaostreff-flensburg/RoboBeats">Github</a>
+					<span id="open_leveleditor">Editor</span>
 				</div>
 				<div class="footer__right">
 					Created with &heartsuit; at <img class="footer__logo" src="media/gg_logo.png" alt="Global Game Jam 2020">

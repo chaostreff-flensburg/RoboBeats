@@ -67,10 +67,16 @@ const timelineRenderer = NewTimelineRenderer ();
 const nextLevel = document.getElementById('nextlevel');
 const error = document.getElementById('error');
 const levelnumber = document.getElementById('levelnumber');
+const levelEditorStart = document.getElementById('open_leveleditor');
 
 // Next Level
 nextlevel.addEventListener('click', (e) => {
   hub.LoadMap()
+})
+
+// LevelEditor
+levelEditorStart.addEventListener('click', (e) => {
+  hub.OpenEditor();
 })
 
 // Hub
@@ -130,5 +136,7 @@ timelineRenderer.onClickReset(() => {
 })
 
 // Init
-//hub.LoadMap()
-hub.SetMap(mapMock);
+hub.LoadMap() // Load Map from universe
+//hub.SetMap(mapMock);
+
+//hub.GenerateEmptyMap(4, 4);
