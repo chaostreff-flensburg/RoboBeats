@@ -1,58 +1,26 @@
-const STATUS_CODE_ERROR = -1
-const STATUS_CODE_SUCCESS = 0
-const STATUS_CODE_OK = 1
-
-const TICK_DEACTIVE = 0
-const TICK_ACTIVE = 1
-
-function NewTimeline (patternMachine) {
-	const self = {
-		ticks: 16,
-		patternMachine: patternMachine,
-		currentTick: 0
-	}
-
-	self.SetMap = function (map) {
-		self.ticks = map.Ticks
-		self.patternMachine.SetMap(map)
-	}
-
-	self.Reset = function () {
-		self.currentTick = 0
-		self.patternMachine.Reset()
-	}
-
-	self.PlayTick = function (tickNumber) {
-		const status = self.patternMachine.PlayTick(tickNumber)
-
-		if (status == STATUS_CODE_ERROR) {
-			self.Reset()
-		}
-	}
-
-	self.Run = function () {
-		self.Reset()
-
-		setInterval(() => {
-			if (self.currentTick >= self.ticks) {
-				self.Reset()
-			}
-
-			self.PlayTick(self.currentTick)
-
-			self.currentTick++
-		}, 1000)
-	}
-
-	return self
-}
-
 function NewPatternMachine (gamearea) {
 	const self = {
 		ticks: 16,
 		map: null,
 		gamearea: gamearea,
-		tracks: []
+		tracks: [],
+		onFn: {
+			setMap: null,
+			toggleTick: null,
+			playTick: null,
+		}
+	}
+
+	self.onSetMap = function (fn) {
+		self.onFn.setMap = fn
+	}
+
+	self.onToggleTick = function (fn) {
+		self.onFn.toggleTick = fn
+	}
+
+	self.onPlayTick = function (fn) {
+		self.onFn.playTick = fn
 	}
 
 	self.Reset = function () {
@@ -80,6 +48,10 @@ function NewPatternMachine (gamearea) {
 
 		// set map
 		self.gamearea.SetMap(map)
+
+		if (self.onFn.setMap != null) {
+			self.onFn.setMap(map)
+		}
 	}
 
 	self.PlayTick = function (tickNumber) {
@@ -93,24 +65,27 @@ function NewPatternMachine (gamearea) {
 			return column;
 		}, []);
 
+		if (self.onFn.playTick != null) {
+			self.onFn.playTick(tickNumber)
+		}
 
 		return self.gamearea.PlayTick(tickNumber, column)
 	}
 
-	self.Activate = function (trackNumber, tickNumber) {
-		if (self.tracks.length <= trackNumber || self.tracks[trackNumber].length <= tickNumber) {
+	self.ToggleTick = function (trackNumber, tickNumber) {
+		if (trackNumber >= self.tracks.length || tickNumber >= self.tracks[trackNumber].length) {
 			return
 		}
 
-		self.tracks[trackNumber][tickNumber] = 1
-	}
-
-	self.Deactivate = function (trackNumber, tickNumber) {
-		if (self.tracks.length <= trackNumber || self.tracks[trackNumber].length <= tickNumber) {
-			return
+		if (self.tracks[trackNumber][tickNumber] == TICK_ACTIVE) {
+			self.tracks[trackNumber][tickNumber] = TICK_DEACTIVE
+		} else {
+			self.tracks[trackNumber][tickNumber] = TICK_ACTIVE
 		}
 
-		self.tracks[trackNumber][tickNumber] = 0		
+		if (self.onFn.toggleTick != null) {
+			self.onFn.toggleTick(trackNumber, tickNumber, self.tracks[trackNumber][tickNumber])
+		}
 	}
 
 	return self
@@ -133,40 +108,3 @@ function NewGameareaMock() {
 
 	return self
 }
-
-const mapMock = {
-    Name: "Level 2342",
-    Tracks: [
-        {
-            Name: "Laufen",
-            Action: "move", // move, jump, ... 
-            Sound: "kick",  // hat, clap...
-            Show: true,
-//            Pattern: [0,1,0,0,0,1,...] // optional
-        },
-        {
-            Name: "Lava",
-            Action: "lava", // move, jump, ... 
-            Sound: "none",  // hat, clap...
-            Show: false,
-            Pattern: [0,1,0,0,0,1,0,1,0,0,0,1,0,0,0,1] // optional
-        },
-    ],
-    Ticks: 16,
-    Width: 8,
-    Height: 8,
-    Level: [],
-}
-
-const gameareaMock = NewGameareaMock()
-const patternMachine = NewPatternMachine(gameareaMock)
-const timeline = NewTimeline(patternMachine)
-
-timeline.Reset()
-timeline.SetMap(mapMock)
-timeline.Run()
-
-setTimeout(() => {
-	patternMachine.Activate(0, 0)
-	console.log("set active")
-}, 3000)

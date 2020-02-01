@@ -1,8 +1,37 @@
 <html>
 	<head>
-
+		<style type="text/css">
+			.trackname__text {
+				stroke: none;
+			    pointer-events: none;
+			    font-size: .8rem;
+			    fill: #fff;
+		    }
+		    .tick {
+		    	cursor: pointer;
+		    }
+		    .tick:hover, .tick__active {
+				fill: #DA4567;
+			}
+			.tick__current {
+				fill: #ccc;
+			}
+			.tick__current.tick__active {
+				fill: #00ff00;
+			}
+		</style>
 	</head>
 	<body>
-		
+		<!-- Gamearea -->
+		<!-- Timeline -->
+		<div id="timeline">
+		</div>
+		<!-- PatternMachine -->
+		<div id="patternmachine">
+		</div>
+		<script type="text/javascript" src="patternmaschine_renderer.js"></script>
+		<script type="text/javascript" src="timeline.js"></script>
+		<script type="text/javascript" src="patternmaschine.js"></script>
+		<script type="text/javascript" src="app.js"></script>
 	</body>
 </html>
