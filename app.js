@@ -16,9 +16,16 @@ const mapMock = {
       //            Pattern: [0,1,0,0,0,1,...] // optional
     },
     {
-      Name: 'Springen',
+      Name: 'Nach Rechts drehen',
       Action: 'turnright', // move, jump, ... 
       Sound: 'openhat',  // hat, clap...
+      Show: true
+      //            Pattern: [0,1,0,0,0,1,...] // optional
+    },
+    {
+      Name: 'Warten',
+      Action: 'wait', // move, jump, ... 
+      Sound: 'openhat2',  // hat, clap...
       Show: true
       //            Pattern: [0,1,0,0,0,1,...] // optional
     },
@@ -55,6 +62,11 @@ timelineRenderer.onClickReset(() => {
   gamearea.Reset();
   gameRenderer.Reset();
 })
+gamearea.onError(() => {
+  sound.Reset();
+  gamearea.Reset();
+  gameRenderer.Reset();
+});
 patternRenderer.onClickTick(sound.ToggleTick)
 
 sound.onSetMap((map) => {

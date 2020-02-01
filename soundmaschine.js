@@ -14,6 +14,7 @@ function NewSoundMaschine() {
   self.sampler = new Tone.Players({
     kick: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/kick.[ogg]',
     openhat: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/openhat.[ogg]',
+    openhat2: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/openhat.[ogg]'
   }, {
     volume: 0,
     fadeOut: '64n'

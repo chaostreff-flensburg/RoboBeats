@@ -3,7 +3,8 @@ function NewGamearea () {
     Map: {},
     LevelClone: [],
     Robo: { x: 0, y: 0, d: 'top' },
-    Tracks: []
+    Tracks: [],
+    ErrorFn: null
   };
 
   self.Reset = function () {
@@ -16,6 +17,10 @@ function NewGamearea () {
       });
     });
   };
+
+  self.onError = function (fn) {
+    self.clickResetFn = fn;
+  }
 
   self.GetLevelClone = function () {
     return self.LevelClone;
@@ -56,10 +61,11 @@ function NewGamearea () {
               }
               if (self.Robo.x < 0 || self.Robo.y < 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 5 || self.LevelClone[self.Robo.x][self.Robo.y] === 3) {
                 status = -1;
+                self.ErrorFn();
               }
               break;
             case 'turnleft':
-              if (self.Map.Level[self.Robo.x][self.Robo.y] === 8) status = -1;
+              if (self.Map.Level[self.Robo.x][self.Robo.y] === 8) { status = -1; self.ErrorFn(); }
               switch (self.Robo.d) {
                 case 'top': self.Robo.d = 'left'; break;
                 case 'down': self.Robo.d = 'right'; break;
@@ -67,7 +73,7 @@ function NewGamearea () {
                 case 'right': self.Robo.d = 'top'; break;
               } break;
             case 'turnright':
-              if (self.Map.Level[self.Robo.x][self.Robo.y] === 8) status = -1;
+              if (self.Map.Level[self.Robo.x][self.Robo.y] === 8) { status = -1; self.ErrorFn();}
               switch (self.Robo.d) {
                 case 'top': self.Robo.d = 'right'; break;
                 case 'down': self.Robo.d = 'left'; break;
@@ -83,7 +89,7 @@ function NewGamearea () {
                     }
                   });
                 }); break;
-                case 8: status = -1;
+                case 8: status = -1; self.ErrorFn();
               } break;
           }
         } else {
