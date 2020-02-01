@@ -21,6 +21,10 @@ function NewGamearea () {
     return self.LevelClone;
   };
 
+  self.GetRobo = function () {
+    return self.Robo;
+  };
+
   self.SetMap = function (MapJson) {
     self.Map = MapJson;
     self.LevelClone = self.Map.Level;
