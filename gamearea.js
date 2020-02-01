@@ -39,7 +39,7 @@ function NewGamearea () {
   };
 
   self.PlayTick = (Tick, Tracks) => {
-    if (Tick) {
+    if (Tick === 0) {
       self.Reset();
     }
     var status = 1;
