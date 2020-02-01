@@ -66,8 +66,9 @@ gamearea.onError(() => {
   sound.Reset();
   gamearea.Reset();
   gameRenderer.Reset();
+  sound.TogglePlay();
 });
-patternRenderer.onClickTick(sound.ToggleTick)
+patternRenderer.onClickTick(sound.ToggleTick);
 
 sound.onSetMap((map) => {
   patternRenderer.SetMap(map);
