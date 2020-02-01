@@ -19,7 +19,7 @@ function NewGamearea () {
   };
 
   self.onError = function (fn) {
-    self.clickResetFn = fn;
+    self.ErrorFn = fn;
   }
 
   self.GetLevelClone = function () {
