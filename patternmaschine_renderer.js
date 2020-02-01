@@ -68,7 +68,7 @@ function NewPatternmaschineRenderer() {
     div.appendChild(svg);
 
     for (let i = 0; i < self.tracks.length; i++) {
-      svg.appendChild(self.createTrack(i, 'Test ' + i));
+      svg.appendChild(self.createTrack(i, self.tracks[i].Name));
     }
 
     svg.appendChild(self.createLabels());
