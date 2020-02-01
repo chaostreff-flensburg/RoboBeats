@@ -12,7 +12,7 @@ function NewGameRenderer () {
     self.Level.forEach((rows, x) => {
       rows.forEach((v, y) => {
         const field = document.getElementById('f_' + x + '_' + y);
-        field.innerHTML = v;
+        field.innerHTML = '<img scr="field_' + v + '.svg">';
       });
     });
   };
