@@ -63,7 +63,7 @@ function NewPatternmaschineRenderer() {
     var div = document.getElementById('patternmachine');
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttributeNS(null, 'width', 124 + self.ticks * 60);
-	svg.setAttributeNS(null, 'height', self.tracks.length * 60 + 60);
+    svg.setAttributeNS(null, 'height', self.tracks.length * 60 + 60);
 
     div.appendChild(svg);
 
@@ -93,13 +93,13 @@ function NewPatternmaschineRenderer() {
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttributeNS(null, 'x', 0);
     svg.setAttributeNS(null, 'y', 0);
-	svg.setAttributeNS(null, 'id', 'trackname_' + trackNumber);
+	  svg.setAttributeNS(null, 'id', 'trackname_' + trackNumber);
 
     // background
     const id = 'trackname_' + trackNumber + '_bg';
-	const rect = NewSVG(id).Position(0, 5).Size(124, 58).Class('trackname_bg').Rect();
+	  const rect = NewSVG(id).Position(0, 5).Size(124, 58).Class('trackname_bg').Rect();
 
-	svg.appendChild(rect);
+	  svg.appendChild(rect);
 
     // text
     var text = document.createElementNS(ns, 'text');
@@ -108,9 +108,9 @@ function NewPatternmaschineRenderer() {
     text.setAttributeNS(null, 'x', 61);
     text.setAttributeNS(null, 'y', 36);
     text.setAttributeNS(null, 'text-anchor', 'middle');
-	text.setAttributeNS(null, 'font-size', '16px');
-	text.textContent = trackName;
-	text.setAttribute("fill", "white");
+	  text.setAttributeNS(null, 'font-size', '16px');
+	  text.textContent = trackName;
+	  text.setAttribute("fill", "white");
     svg.appendChild(text);
 
     return svg;
@@ -139,8 +139,8 @@ function NewPatternmaschineRenderer() {
       text.setAttributeNS(null, 'width', 58);
       text.setAttributeNS(null, 'height', 58);
       text.setAttributeNS(null, 'text-anchor', 'middle');
-	  text.setAttributeNS(null, 'font-size', '16px');
-	  text.setAttribute('fill', 'white');
+	    text.setAttributeNS(null, 'font-size', '16px');
+	    text.setAttribute('fill', 'white');
       text.textContent = i + 1;
       svg.appendChild(text);
     }

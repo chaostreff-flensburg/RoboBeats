@@ -43,6 +43,17 @@ function NewSVG (id) {
     return rect;
   }
 
+  self.Polygon = function (pointString) {
+    const polygon = document.createElementNS(NSSVG, 'polygon');
+    polygon.setAttributeNS(null, 'x', self.x);
+    polygon.setAttributeNS(null, 'y', self.y);
+    polygon.setAttributeNS(null, 'class', self.class);
+    polygon.setAttributeNS(null, 'id', self.id);
+    polygon.setAttributeNS(null, 'points', pointString);
+
+    return polygon;
+  }
+
   return self;
 }
 

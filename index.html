@@ -13,10 +13,50 @@
 			}
 			.container {
 				max-width: 1100px;
-				margin: 20px auto;
+				margin: 120px auto;
 			}
+
+			.clear {
+				clear: both;
+			}
+
+			#gamerenderer {
+				float: right;
+				text-align: right;
+				margin: 40px 10px 100px;
+			}
+
+			#meta {
+				float: left;
+				margin: 40px 0px 100px;
+				color: #fff;
+			}
+
+			h1 {
+				font-size: 40px;
+				margin: 0;
+				padding: 0;
+				font-weight: bold;
+			}
+
+			h2 {
+				font-size: 20px;
+				margin: 0;
+				padding: 0;
+				font-weight: bold;
+			}
+
+			#timeline {
+				margin-top: -60px;
+				margin-bottom: 40px;
+			}
+			#playbutton_bg, #stopbutton_bg, #resetbutton_bg {
+				cursor: pointer;
+			}
+
 			.footer {
 				text-align: right;
+				margin-top: 100px;
 			}
 			.footer__logo {
 				width: 90px;
@@ -54,12 +94,9 @@
 	</head>
 	<body>
 		<div class="container">
-			<!-- Gamearea -->
-			<!-- Timeline -->
-			<div id="timeline">
-			</div>
-			<!-- PatternMachine -->
-			<div id="patternmachine">
+			<div id="meta">
+				<h2>1/102</h2>
+				<h1>RoboBeats</h1>
 			</div>
 			<!-- GameRenderer-->
 			<div id="gamerenderer">
@@ -67,6 +104,13 @@
 				<div class="field" id="f_1_0"></div><div class="field" id="f_1_1"></div><div class="field" id="f_1_2"></div><div class="field" id="f_1_3"></div><br>
 				<div class="field" id="f_2_0"></div><div class="field" id="f_2_1"></div><div class="field" id="f_2_2"></div><div class="field" id="f_2_3"></div><br>
 				<div class="field" id="f_3_0"></div><div class="field" id="f_3_1"></div><div class="field" id="f_3_2"></div><div class="field" id="f_3_3"></div><br>
+			</div>
+			<div class="clear"></div>
+			<!-- Timeline -->
+			<div id="timeline">
+			</div>
+			<!-- PatternMachine -->
+			<div id="patternmachine">
 			</div>
 			<!-- Footer -->
 			<footer class="footer">
