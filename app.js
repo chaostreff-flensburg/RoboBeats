@@ -60,6 +60,8 @@ patternRenderer.onClickTick(sound.ToggleTick)
 sound.onSetMap((map) => {
   patternRenderer.SetMap(map);
   gamearea.SetMap(map);
+  gameRenderer.SetState(gamearea.GetLevelClone());
+  gameRenderer.Render(gamearea.GetRobo());
 })
 sound.onPlayTick((tickNumber, column) => {
   patternRenderer.SetCurrentTick(tickNumber, column);
