@@ -38,8 +38,8 @@ function NewTimelineRenderer() {
   function createPlaybutton () {
 	const rect = NewSVG('playbutton').Position(2, 1).Size(58, 58).Class('play').Rect();
 	rect.setAttribute('fill', '#1ec8c8');
-	rect.setAttribute('rx', '20');
-	rect.setAttribute('ry', '20');
+	rect.setAttribute('rx', '15');
+	rect.setAttribute('ry', '15');
 	rect.setAttribute('stroke', '#7BEBEB');
 	rect.setAttribute('stroke-width', '2');
 	rect.addEventListener('click', self.clickPlay);
