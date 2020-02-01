@@ -28,7 +28,7 @@ const mapMock = {
       Sound: 'none',  // hat, clap...
       Show: false,
       Pattern: [0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1] // optional
-    },
+    }
   ],
   Ticks: 16,
   Width: 8,
@@ -42,26 +42,29 @@ const mapMock = {
 };
 
 const gamearea = NewGamearea ();
+const gameRenderer = NewGameRenderer();
 const sound = NewSoundMaschine ();
 const patternRenderer = NewPatternmaschineRenderer ();
 const timelineRenderer = NewTimelineRenderer ();
 
 timelineRenderer.onClickPlay(() => {
-  sound.TogglePlay()
+  sound.TogglePlay();
 })
 timelineRenderer.onClickReset(() => {
-  sound.Reset()
-  gamearea.Reset()
+  sound.Reset();
+  gamearea.Reset();
 })
 patternRenderer.onClickTick(sound.ToggleTick)
 
 sound.onSetMap((map) => {
-  patternRenderer.SetMap(map)
-  gamearea.SetMap(map)
+  patternRenderer.SetMap(map);
+  gamearea.SetMap(map);
 })
 sound.onPlayTick((tickNumber, column) => {
-  patternRenderer.SetCurrentTick(tickNumber, column)
-  gamearea.PlayTick(tickNumber, column)
+  patternRenderer.SetCurrentTick(tickNumber, column);
+  gamearea.PlayTick(tickNumber, column);
+  gameRenderer.SetState(gamearea.GetLevelClone());
+  gameRenderer.Render(gamearea.GetRobo());
 })
-sound.onToggleTick(patternRenderer.SetTickState)
-sound.SetMap(mapMock)
+sound.onToggleTick(patternRenderer.SetTickState);
+sound.SetMap(mapMock);
