@@ -39,6 +39,9 @@ function NewGamearea () {
   };
 
   self.PlayTick = (Tick, Tracks) => {
+    if (Tick) {
+      self.Reset();
+    }
     var status = 1;
     Tracks.forEach((e, i) => {
       if (e > 0) { // Aktiv
