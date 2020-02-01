@@ -49,8 +49,8 @@ function NewTimelineRenderer() {
     text.setAttributeNS(null, 'x', 61 + 124 / 2);
     text.setAttributeNS(null, 'y', 36);
     text.setAttributeNS(null, 'text-anchor', 'middle');
-    text.setAttributeNS(null, 'font-size', '13px');
-    text.textContent = 'Reset';
+    text.setAttributeNS(null, 'font-size', '28px');
+	text.textContent = 'Reset';
 
     text.addEventListener('click', self.clickReset);
 

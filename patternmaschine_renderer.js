@@ -106,7 +106,7 @@ function NewPatternmaschineRenderer() {
     text.setAttributeNS(null, 'x', 61);
     text.setAttributeNS(null, 'y', 36);
     text.setAttributeNS(null, 'text-anchor', 'middle');
-    text.setAttributeNS(null, 'font-size', '13px');
+    text.setAttributeNS(null, 'font-size', '28px');
     text.textContent = trackName;
     svg.appendChild(text);
 
@@ -136,7 +136,7 @@ function NewPatternmaschineRenderer() {
       text.setAttributeNS(null, 'width', 58);
       text.setAttributeNS(null, 'height', 58);
       text.setAttributeNS(null, 'text-anchor', 'middle');
-      text.setAttributeNS(null, 'font-size', '13px');
+      text.setAttributeNS(null, 'font-size', '28px');
       text.textContent = i + 1;
       svg.appendChild(text);
     }
