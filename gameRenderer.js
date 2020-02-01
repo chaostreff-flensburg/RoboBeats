@@ -9,10 +9,17 @@ function NewGameRenderer () {
 
   self.SetState = function (LevelClone) {
     self.Level = LevelClone;
+    self.Level.forEach((rows, x) => {
+      rows.forEach((v, y) => {
+        const field = document.getElementById('f_' + x + '_' + y);
+        field.innerHTML = v;
+      });
+    });
   };
 
-  self.Render = function (robo) {
-    // Zeige Level anhand von self.Level
+  self.Render = function (Robo) {
+    const field = document.getElementById('f_' + Robo.x + '_' + Robo.y);
+    field.innerHTML = 'R';
     // Packe Robo an robo.x & robo.y mit Richtung robo.r
   };
 
