@@ -66,7 +66,7 @@ function NewPatternMachine (gamearea) {
 		}, []);
 
 		if (self.onFn.playTick != null) {
-			self.onFn.playTick(tickNumber)
+			self.onFn.playTick(tickNumber, column)
 		}
 
 		return self.gamearea.PlayTick(tickNumber, column)
