@@ -34,7 +34,7 @@ const mapMock = {
       Action: 'lava', // move, jump, ... 
       Sound: 'none',  // hat, clap...
       Show: false,
-      Pattern: [0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1] // optional
+      Pattern: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1] // optional
     }
   ],
   Ticks: 16,
@@ -43,8 +43,8 @@ const mapMock = {
   Level: [
     [0, 0, 0, 9],
     [2, 2, 2, 2],
-    [2, 0, 0, 0],
-    [1, 0, 0, 0]
+    [2, 0, 0, 2],
+    [1, 2, 4, 2]
   ]
 };
 

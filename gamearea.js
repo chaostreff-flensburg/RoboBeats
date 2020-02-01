@@ -43,78 +43,80 @@ function NewGamearea () {
     });
   };
 
-  self.PlayTick = (Tick, Tracks) => {
-    if (Tick === 0) {
+  self.PlayTick = (tickNumber, Columns) => {
+    if (tickNumber === 0) {
       self.Reset();
     }
+
     var status = 1;
-    Tracks.forEach((e, i) => {
-      if (e > 0) { // Aktiv
-        if (self.Tracks[i].Show) {
-          switch (self.Tracks[i].Action) {
-            case 'move':
-              switch (self.Robo.d) {
-                case 'top': self.Robo.x -= 1; break;
-                case 'down': self.Robo.x += 1; break;
-                case 'left': self.Robo.y -= 1; break;
-                case 'right': self.Robo.y += 1; break;
-              }
-              if (self.Robo.x < 0 || self.Robo.y < 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 5 || self.LevelClone[self.Robo.x][self.Robo.y] === 3) {
-                status = -1;
-                self.ErrorFn();
-              }
-              break;
-            case 'turnleft':
-              if (self.Map.Level[self.Robo.x][self.Robo.y] === 8) { status = -1; self.ErrorFn(); }
-              switch (self.Robo.d) {
-                case 'top': self.Robo.d = 'left'; break;
-                case 'down': self.Robo.d = 'right'; break;
-                case 'left': self.Robo.d = 'down'; break;
-                case 'right': self.Robo.d = 'top'; break;
-              } break;
-            case 'turnright':
-              if (self.Map.Level[self.Robo.x][self.Robo.y] === 8) { status = -1; self.ErrorFn();}
-              switch (self.Robo.d) {
-                case 'top': self.Robo.d = 'right'; break;
-                case 'down': self.Robo.d = 'left'; break;
-                case 'left': self.Robo.d = 'top'; break;
-                case 'right': self.Robo.d = 'down'; break;
-              } break;
-            case 'wait':
-              switch (self.Map.Level[self.Robo.x][self.Robo.y]) {
-                case 6: self.Map.Level.forEach((rows, x) => {
-                  rows.forEach((v, y) => {
-                    if (v === 7) {
-                      self.LevelClone[x][y] = 2; // Setze Buttonfeld auf 2 (Boden)
-                    }
-                  });
-                }); break;
-                case 8: status = -1; self.ErrorFn();
-              } break;
-          }
-        } else {
-          if (self.Tracks[i].Name === 4) { // Lava Aktiv setzen
-            self.Map.Level.forEach((rows, x) => {
-              rows.forEach((v, y) => {
-                if (v === 4) {
-                  self.LevelClone[x][y] = 5; // Lava Aktiv!
-                }
-              });
-            });
-          }
+    for (var i = 0; i < Columns.length; i++) {
+      const columnValue = Columns[i]
+      const track = self.Tracks[i]
+
+      if (track.Show && columnValue > 0) {
+        switch (track.Action) {
+          case 'move':
+            switch (self.Robo.d) {
+              case 'top': self.Robo.x -= 1; break;
+              case 'down': self.Robo.x += 1; break;
+              case 'left': self.Robo.y -= 1; break;
+              case 'right': self.Robo.y += 1; break;
+            }
+            if (self.Robo.x < 0 || self.Robo.y < 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 5 || self.LevelClone[self.Robo.x][self.Robo.y] === 3) {
+              status = -1;
+              self.ErrorFn();
+            }
+            break;
+          case 'turnleft':
+            if (self.Map.Level[self.Robo.x][self.Robo.y] === 8) { status = -1; self.ErrorFn(); }
+            switch (self.Robo.d) {
+              case 'top': self.Robo.d = 'left'; break;
+              case 'down': self.Robo.d = 'right'; break;
+              case 'left': self.Robo.d = 'down'; break;
+              case 'right': self.Robo.d = 'top'; break;
+            } break;
+          case 'turnright':
+            if (self.Map.Level[self.Robo.x][self.Robo.y] === 8) { status = -1; self.ErrorFn();}
+            switch (self.Robo.d) {
+              case 'top': self.Robo.d = 'right'; break;
+              case 'down': self.Robo.d = 'left'; break;
+              case 'left': self.Robo.d = 'top'; break;
+              case 'right': self.Robo.d = 'down'; break;
+            } break;
+          case 'wait':
+            switch (self.Map.Level[self.Robo.x][self.Robo.y]) {
+              case 6: self.Map.Level.forEach((rows, x) => {
+                rows.forEach((v, y) => {
+                  if (v === 7) {
+                    self.LevelClone[x][y] = 2; // Setze Buttonfeld auf 2 (Boden)
+                  }
+                });
+              }); break;
+              case 8: status = -1; self.ErrorFn();
+            } break;
         }
-      } else { // Nicht aktiv
-        if (self.Tracks[i].Name === 4) { // Lava deAktiv setzen
-          self.Map.Level.forEach((rows, x) => {
-            rows.forEach((v, y) => {
-              if (v === 4) {
-                self.LevelClone[x][y] = 4; // Lava NICHT Aktiv!
-              }
-            });
+
+          continue
+      }
+
+      // invisible pattern
+      if (track.Action === "lava") { // Lava Aktiv setzen
+        if (!track.hasOwnProperty("Pattern")) {
+          continue;
+        }
+
+        const lavaState = (columnValue == 1)?5:4;
+
+        self.Map.Level.forEach((rows, x) => {
+          rows.forEach((v, y) => {
+            if (v === 4 || v === 5) { // map type lava
+              self.LevelClone[x][y] = lavaState;
+            }
           });
-        }
-      };
-    });
+        });
+      }
+    }
+
     return status;
   };
 

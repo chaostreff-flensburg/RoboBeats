@@ -46,6 +46,14 @@
 				font-weight: bold;
 			}
 
+			a {
+				color: #fccd01;
+			}
+
+			a:hover {
+				color: #3B7DBB;
+			}
+
 			#timeline {
 				margin-top: -60px;
 				margin-bottom: 40px;
@@ -57,6 +65,15 @@
 			.footer {
 				text-align: right;
 				margin-top: 100px;
+				position: relative;
+			}
+			.footer__left {
+				position: absolute;
+				left: 0;
+				bottom: 0;
+			}
+			.footer__right {
+				float: right;
 			}
 			.footer__logo {
 				width: 90px;
@@ -114,7 +131,13 @@
 			</div>
 			<!-- Footer -->
 			<footer class="footer">
-				Created with &heartsuit; at <img class="footer__logo" src="media/gg_logo.png" alt="Global Game Jam 2020">
+				<div class="footer__left">
+					<a href="https://github.com/chaostreff-flensburg/RoboBeats">Github</a>
+				</div>
+				<div class="footer__right">
+					Created with &heartsuit; at <img class="footer__logo" src="media/gg_logo.png" alt="Global Game Jam 2020">
+				</div>
+				<div class="clear"></div>
 			</footer>
 		</div>
 		<script type="text/javascript" src="tone.js"></script>
