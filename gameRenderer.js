@@ -19,7 +19,7 @@ function NewGameRenderer () {
 
   self.Render = function (Robo) {
     const field = document.getElementById('f_' + Robo.x + '_' + Robo.y);
-    field.innerHTML = '<img src="media/field_R.png">';
+    field.innerHTML = '<img src="media/robot_' + Robo.d + '.png">';
     // Packe Robo an robo.x & robo.y mit Richtung robo.r
   };
 
