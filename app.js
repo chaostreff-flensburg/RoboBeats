@@ -48,11 +48,33 @@ const mapMock = {
   ]
 };
 
+
+const nextLevel = document.getElementById('nextlevel');
+nextlevel.addEventListener('click', (e) => {
+  hub.LoadMap()
+})
+
+// Hub
+const hub = NewHub ();
+hub.onError((e) => {
+  const div = document.getElementById('error');
+  div.innerHTML = e;
+})
+
 const gamearea = NewGamearea ();
-const gameRenderer = NewGameRenderer();
+const gameRenderer = NewGameRenderer ();
 const sound = NewSoundMaschine ();
 const patternRenderer = NewPatternmaschineRenderer ();
 const timelineRenderer = NewTimelineRenderer ();
+
+hub.onSetMap((map, number) => {
+  const div = document.getElementById('levelnumber');
+  div.innerHTML = number + '/102';
+
+  nextLevel.innerHTML = '';
+
+  sound.SetMap(map)
+})
 
 timelineRenderer.onClickPlay(() => {
   sound.TogglePlay();
@@ -63,15 +85,18 @@ timelineRenderer.onClickReset(() => {
   gameRenderer.Reset();
 })
 gamearea.onError(() => {
-  //sound.Reset();
-  //gamearea.Reset();
-  //gameRenderer.Reset();
   // Error only stop
   sound.TogglePlay();
+});
+gamearea.onSuccess(() => {
+  nextLevel.innerHTML = 'Load next Level';
 });
 patternRenderer.onClickTick(sound.ToggleTick);
 
 sound.onSetMap((map) => {
+  const div = document.getElementById('error');
+  div.innerHTML = '';
+
   patternRenderer.SetMap(map);
   gamearea.SetMap(map);
   gameRenderer.SetState(gamearea.GetLevelClone());
@@ -84,4 +109,5 @@ sound.onPlayTick((tickNumber, column) => {
   gameRenderer.Render(gamearea.GetRobo());
 })
 sound.onToggleTick(patternRenderer.SetTickState);
-sound.SetMap(mapMock);
+hub.LoadMap()
+//hub.SetMap(mapMock);

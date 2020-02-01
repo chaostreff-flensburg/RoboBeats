@@ -4,7 +4,8 @@ function NewGamearea () {
     LevelClone: [],
     Robo: { x: 0, y: 0, d: 'top' },
     Tracks: [],
-    ErrorFn: null
+    ErrorFn: null,
+    SuccessFn: null,
   };
 
   self.Reset = function () {
@@ -20,6 +21,10 @@ function NewGamearea () {
 
   self.onError = function (fn) {
     self.ErrorFn = fn;
+  }
+
+  self.onSuccess = function (fn) {
+    self.SuccessFn = fn;
   }
 
   self.GetLevelClone = function () {
@@ -65,6 +70,8 @@ function NewGamearea () {
             if (self.Robo.x < 0 || self.Robo.y < 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 5 || self.LevelClone[self.Robo.x][self.Robo.y] === 3) {
               status = -1;
               self.ErrorFn();
+            } else if (self.LevelClone[self.Robo.x][self.Robo.y] === 9) {
+              self.SuccessFn();
             }
             break;
           case 'turnleft':
@@ -74,7 +81,8 @@ function NewGamearea () {
               case 'down': self.Robo.d = 'right'; break;
               case 'left': self.Robo.d = 'down'; break;
               case 'right': self.Robo.d = 'top'; break;
-            } break;
+            }
+            break;
           case 'turnright':
             if (self.Map.Level[self.Robo.x][self.Robo.y] === 8) { status = -1; self.ErrorFn();}
             switch (self.Robo.d) {
@@ -82,7 +90,8 @@ function NewGamearea () {
               case 'down': self.Robo.d = 'left'; break;
               case 'left': self.Robo.d = 'top'; break;
               case 'right': self.Robo.d = 'down'; break;
-            } break;
+            }
+            break;
           case 'wait':
             switch (self.Map.Level[self.Robo.x][self.Robo.y]) {
               case 6: self.Map.Level.forEach((rows, x) => {
@@ -93,10 +102,11 @@ function NewGamearea () {
                 });
               }); break;
               case 8: status = -1; self.ErrorFn();
-            } break;
+            }
+            break;
         }
 
-          continue
+        continue
       }
 
       // invisible pattern

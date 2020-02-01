@@ -53,11 +53,13 @@
 				font-weight: bold;
 			}
 
-			a {
+			a, #nextlevel {
 				color: #fccd01;
+				cursor: pointer;
+				text-decoration: underline;
 			}
 
-			a:hover {
+			a:hover, #nextlevel:hover {
 				color: #3B7DBB;
 			}
 
@@ -71,6 +73,10 @@
 
 			#patternmachine > svg {
 				width: 100%;
+			}
+
+			#error {
+				color: #ff0000;
 			}
 
 			.footer {
@@ -123,8 +129,10 @@
 	<body>
 		<div class="container">
 			<div id="meta">
-				<h2>1/102</h2>
+				<h2 id="levelnumber">1/102</h2>
 				<h1>RoboBeats</h1>
+				<div id="error"></div>
+				<div id="nextlevel"></div>
 			</div>
 			<!-- GameRenderer-->
 			<div id="gamerenderer">
@@ -153,6 +161,7 @@
 		</div>
 		<script type="text/javascript" src="tone.js"></script>
 		<script type="text/javascript" src="svg.js"></script>
+		<script type="text/javascript" src="hub.js"></script>
 		<script type="text/javascript" src="gamearea.js"></script>
 		<script type="text/javascript" src="gameRenderer.js"></script>
 		<script type="text/javascript" src="soundmaschine.js"></script>
