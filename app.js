@@ -6,7 +6,6 @@ const TICK_DEACTIVE = 0
 const TICK_ACTIVE = 1
 
 const mapMock = {
-  Name: 'Level 2342',
   Tracks: [
     {
       Name: 'Laufen',
