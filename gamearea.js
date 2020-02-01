@@ -7,31 +7,49 @@ function NewGamearea() {
   };
 
   self.Reset = function () {
-    self.Robo = { x: 0, y: 0, d: 'top' },
     self.LevelClone = self.Map.Level;
+    self.Map.Level.forEach((rows, x) => {
+      rows.forEach((v, y) => {
+        if (v === 1) {
+          self.Robo = { x: x, y: y, d: 'top' };
+        }
+      });
+    });
   };
 
   self.SetMap = function (MapJson) {
     self.Map = MapJson;
+    self.LevelClone = self.Map.Level;
     self.Tracks = MapJson.Tracks;
-    self.Robo = { x: 0, y: 0, d: 'top' };
+    self.Map.Level.forEach((rows, x) => {
+      rows.forEach((v, y) => {
+        if (v === 1) {
+          self.Robo = { x: x, y: y, d: 'top' };
+        }
+      });
+    });
   };
 
   self.PlayTick = (Tick, Tracks) => {
+    var status = 1;
     Tracks.forEach((e, i) => {
       if (e > 0) {
         if (self.Tracks[i].Show) {
-          console.log(self.Tracks[i].Action);
-          
+          //console.log(self.Tracks[i].Action);
           switch (self.Tracks[i].Action) {
             case 'move':
               switch (self.Robo.d) {
-                case 'top': self.Robo.y += 1; break;
-                case 'down': self.Robo.y -= 1; break;
-                case 'left': self.Robo.x -= 1; break;
-                case 'right': self.Robo.x += 1; break;
-              } break;
+                case 'top': self.Robo.x -= 1; break;
+                case 'down': self.Robo.x += 1; break;
+                case 'left': self.Robo.y -= 1; break;
+                case 'right': self.Robo.y += 1; break;
+              }
+              if (self.Robo.x < 0 || self.Robo.y < 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 0) {
+                status = -1;
+              }
+              break;
             case 'turnleft':
+              if (self.Map.Level[self.Robo.x][self.Robo.y] === 8) status = -1;
               switch (self.Robo.d) {
                 case 'top': self.Robo.d = 'left'; break;
                 case 'down': self.Robo.d = 'right'; break;
@@ -39,22 +57,33 @@ function NewGamearea() {
                 case 'right': self.Robo.d = 'top'; break;
               } break;
             case 'turnright':
+              if (self.Map.Level[self.Robo.x][self.Robo.y] === 8) status = -1;
               switch (self.Robo.d) {
                 case 'top': self.Robo.d = 'right'; break;
                 case 'down': self.Robo.d = 'left'; break;
                 case 'left': self.Robo.d = 'top'; break;
                 case 'right': self.Robo.d = 'down'; break;
               } break;
-            case 'wait': break;
+            case 'wait':
+              switch (self.Map.Level[self.Robo.x][self.Robo.y]) {
+                case 6: self.Map.Level.forEach((rows, x) => {
+                  rows.forEach((v, y) => {
+                    if (v === 7) {
+                      self.LevelClone[x][y] = 2; // Setze Buttonfeld auf 2 (Boden)
+                    }
+                  });
+                }); break;
+                case 8: status = -1;
+              } break;
           }
-          console.log(self.Robo);
-        }
-        else {
+          console.log(self.LevelClone);
+        } else {
           console.log(self.Tracks[i].Name);
           // Kommt später
         }
       }
     });
+    return status;
   };
 
   return self;
@@ -100,12 +129,22 @@ Gamearea.SetMap({
     [1, 0, 0, 0]
   ]
 });
-Gamearea.PlayTick(1, [1, 0, 0, 0]);
-Gamearea.PlayTick(2, [1, 0, 0, 0]);
-Gamearea.PlayTick(3, [0, 0, 1, 0]);
-Gamearea.PlayTick(4, [1, 0, 0, 0]);
-Gamearea.PlayTick(5, [0, 0, 0, 1]);
-Gamearea.PlayTick(6, [1, 0, 0, 0]);
-Gamearea.PlayTick(7, [1, 0, 0, 0]);
-Gamearea.PlayTick(8, [0, 1, 0, 0]);
-Gamearea.PlayTick(9, [1, 0, 0, 0]);
+
+var steps = [
+  [1, 0, 0, 0],
+  [1, 0, 0, 0],
+  [0, 0, 1, 0],
+  [0, 0, 0, 1],
+  [1, 0, 0, 0],
+  [1, 0, 0, 0],
+  [0, 1, 0, 0],
+  [1, 0, 0, 0]
+];
+var tmp;
+for (let i = 1; i < 9; i++) {
+  tmp = Gamearea.PlayTick(i, steps[i - 1]);
+  if (tmp === -1) {
+    Gamearea.Reset();
+    console.log('reset');
+  }
+}
