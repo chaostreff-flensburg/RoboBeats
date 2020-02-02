@@ -1,15 +1,15 @@
 {
   "Tracks": [
     {
-      "Name": "Laufen",
-      "Action": "move",
-      "Sound": "kick",
-      "Show": true
-    },
-    {
       "Name": "Drehen",
       "Action": "turnright",
       "Sound": "openhat",
+      "Show": true
+    },
+    {
+      "Name": "Laufen",
+      "Action": "move",
+      "Sound": "kick",
       "Show": true
     }
   ],

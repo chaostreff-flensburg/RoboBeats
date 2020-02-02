@@ -7,12 +7,24 @@
       "Show": true
     },
     {
+      "Name": "Links Drehen",
+      "Action": "turnleft",
+      "Sound": "openhat",
+      "Show": true
+    },
+    {
+      "Name": "Warten",
+      "Action": "wait",
+      "Sound": "openhat2",
+      "Show": true
+    },
+    {
       "Name": "Laufen",
       "Action": "move",
       "Sound": "kick",
       "Show": true
     },
-    {
+   {
       "Name": "Lava",
       "Action": "lava",
       "Sound": "none",
@@ -24,8 +36,9 @@
   "Width": 3,
   "Height": 4,
   "Level": [
-    [9, 2, 2, 2],
-    [0, 0, 0, 2],
-    [1, 2, 4, 2]
+    [2, 2, 2, 0],
+    [1, 0, 2, 0],
+    [0, 0, 4, 2],
+    [0, 0, 0, 9]
   ]
 }
