@@ -70,7 +70,7 @@ function NewPatternmaschineRenderer() {
     div.appendChild(svg);
 
     for (let i = 0; i < self.tracks.length; i++) {
-      svg.appendChild(self.createTrack(i, self.tracks[i].Name));
+      svg.appendChild(self.createTrack(i, self.tracks[i].Action));
     }
 
     svg.appendChild(self.createLabels());
@@ -131,14 +131,14 @@ function NewPatternmaschineRenderer() {
 
 	  svg.appendChild(rect);
 
-    if (trackName === "Move") {
+    if (trackName === "move") {
       svg.appendChild(createMoveIcon())
-    } else if (trackName === "Turn Left") {
-      const polygon = NewSVG().Position(2, 1).Class('play').Polygon("24 49 24 25 36 25 36 33 44 23 36 13 36 21 20 21 20 49 24 49");
+    } else if (trackName === "turnleft") {
+      const polygon = NewSVG().Position(2, 1).Class('play').Polygon("37 49 37 25 25 25 25 33 17 23 25 13 25 21 41 21 41 49 37 49");
       polygon.setAttribute('fill', '#fff');
       svg.appendChild(polygon)
-    } else if (trackName === "Turn Right") {
-      const polygon = NewSVG().Position(2, 1).Class('play').Polygon("37 49 37 25 25 25 25 33 17 23 25 13 25 21 41 21 41 49 37 49");
+    } else if (trackName === "turnright") {
+      const polygon = NewSVG().Position(2, 1).Class('play').Polygon("24 49 24 25 36 25 36 33 44 23 36 13 36 21 20 21 20 49 24 49");
       polygon.setAttribute('fill', '#fff');
       svg.appendChild(polygon)
     }
