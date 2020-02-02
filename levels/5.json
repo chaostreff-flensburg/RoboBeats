@@ -1,7 +1,7 @@
 {
   "Tracks": [
     {
-      "Name": "Rechts Drehen",
+      "Name": "Drehen",
       "Action": "turnright",
       "Sound": "openhat",
       "Show": true

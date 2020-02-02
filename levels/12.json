@@ -13,12 +13,6 @@
       "Show": true
     },
     {
-      "Name": "Warten",
-      "Action": "wait",
-      "Sound": "openhat2",
-      "Show": true
-    },
-    {
       "Name": "Laufen",
       "Action": "move",
       "Sound": "kick",
