@@ -100,6 +100,9 @@ function NewGameRendererCanvas () {
         if (self.Robo != null && x === self.Robo.x && y === self.Robo.y) {
           if (fieldNumber === 5 || fieldNumber === 4) {
             self.Ctx.drawImage(self.Images['field_2'], y*64, x*64);
+          } else if (fieldNumber === 0) {
+            self.Ctx.drawImage(self.Images['field_5'], y*64, x*64);
+            continue;
           }
         }
 
