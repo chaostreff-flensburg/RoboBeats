@@ -3,7 +3,7 @@
     {
       "Name": "Laufen",
       "Action": "move",
-      "Sound": "kick",
+      "Sound": "move",
       "Show": true
     }
   ],
