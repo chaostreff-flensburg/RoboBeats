@@ -119,6 +119,12 @@ function NewGamearea () {
 
         self.Map.Level.forEach((rows, x) => {
           rows.forEach((v, y) => {
+            console.log(v, self.Robo.x, self.Robo.y, x, y);
+            if (v === 4 && self.Robo.x == x && self.Robo.y == y) {
+              status = -1;
+              self.ErrorFn();
+            }
+
             if (v === 4 || v === 5) { // map type lava
               self.LevelClone[x][y] = lavaState;
             }

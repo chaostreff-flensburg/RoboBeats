@@ -27,7 +27,6 @@ function NewSoundMaschine() {
     }
 
     const column = self.columns[columnNumber]
-    console.log(time, column)
 
     for (var trackNumber = 0; trackNumber < column.length; trackNumber++) {
       const track = self.tracks[trackNumber]
