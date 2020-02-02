@@ -87,8 +87,12 @@ function NewGameRendererCanvas () {
 
     // Level
     self.Level.forEach((rows, x) => {
-      rows.forEach((v, y) => {
-        self.Ctx.drawImage(self.Images['field_' + v], y*64, x*64)
+      rows.forEach((fieldNumber, y) => {
+        if (Robo != null && x === Robo.x && y === Robo.y && (fieldNumber === 4 || fieldNumber === 5)) {
+          self.Ctx.drawImage(self.Images['field_2'], y*64, x*64)
+        } else {
+          self.Ctx.drawImage(self.Images['field_' + fieldNumber], y*64, x*64)
+        }
       });
     });
 
