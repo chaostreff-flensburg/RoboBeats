@@ -9,7 +9,7 @@ Reprogram it's movements by rearranging the sound patterns and lead the little r
 Just use your mouse to select/deselect the sound tiles. Everytime the beat hits the tile, the robot moves accordingly.
 
 
-## References
+## Dependencies
 * https://github.com/Tonejs/Tone.js?utm_source=recordnotfound.com
 
 ## License
