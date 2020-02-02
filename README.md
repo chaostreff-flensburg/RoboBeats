@@ -8,6 +8,17 @@ Reprogram it's movements by rearranging the sound patterns and lead the little r
 ### Controls
 Just use your mouse to select/deselect the sound tiles. Everytime the beat hits the tile, the robot moves accordingly.
 
+### Editor
+You can open an editor to create your own levels.
+
+#### Explanation
+* Fields
+| 0 | 1 | 2 | 4 | 5 | 9 |
+| -------- | -------- | -------- |
+| Abyss     | Player     | Ground     | Active Lava     | Inactive Lava     | Goal |
+
+* Tracks
+Move, Turn Left, Turn Right (more added in the future!)
 
 ## Dependencies
 * https://github.com/Tonejs/Tone.js?utm_source=recordnotfound.com
