@@ -24,7 +24,7 @@
       "Action": "lava",
       "Sound": "none",
       "Show": false,
-      "Pattern": [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0]
+      "Pattern": [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0] // you dont have to wait here, change pattern to force wait
     }
   ],
   "Ticks": 16,
