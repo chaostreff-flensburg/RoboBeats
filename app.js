@@ -111,13 +111,13 @@ sound.onSetMap((map) => {
   patternRenderer.SetMap(map);
   gamearea.SetMap(map);
   gameRenderer.SetState(gamearea.GetLevelClone());
-  gameRenderer.Render(gamearea.GetRobo());
+  gameRenderer.SetRobo(gamearea.GetRobo());
 })
 sound.onPlayTick((tickNumber, column) => {
   patternRenderer.SetCurrentTick(tickNumber, column);
   gamearea.PlayTick(tickNumber, column);
   gameRenderer.SetState(gamearea.GetLevelClone());
-  gameRenderer.Render(gamearea.GetRobo());
+  gameRenderer.SetRobo(gamearea.GetRobo());
 })
 
 // PatternRenderer
@@ -126,12 +126,13 @@ patternRenderer.onClickTick(sound.ToggleTick);
 // TimelineRenderer
 timelineRenderer.onClickPlay(() => {
   sound.TogglePlay();
-  gameRenderer.Render(gamearea.GetRobo());
+  gameRenderer.SetRobo(gamearea.GetRobo());
 })
 timelineRenderer.onClickReset(() => {
   sound.Reset();
   gamearea.Reset();
   gameRenderer.Reset();
+  gameRenderer.SetRobo(gamearea.GetRobo());
 })
 
 // Init

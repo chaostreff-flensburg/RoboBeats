@@ -67,7 +67,7 @@ function NewGamearea () {
               case 'left': self.Robo.y -= 1; break;
               case 'right': self.Robo.y += 1; break;
             }
-            if (self.Robo.x < 0 || self.Robo.y < 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 5 || self.LevelClone[self.Robo.x][self.Robo.y] === 3) {
+            if (self.Robo.x < 0 || self.Robo.y < 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 4 || self.LevelClone[self.Robo.x][self.Robo.y] === 3) {
               status = -1;
               self.ErrorFn();
             } else if (self.LevelClone[self.Robo.x][self.Robo.y] === 9) {
