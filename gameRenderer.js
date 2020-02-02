@@ -38,7 +38,6 @@ function NewGameRendererCanvas () {
     Images: {},
     LoadedImages: 0,
     Robo: null,
-    Odd: false
   };
 
   self.ImagesSrcs = [
@@ -54,22 +53,6 @@ function NewGameRendererCanvas () {
     'robot_right',
     'robot_top',
   ]
-
-  let lastTimestamp = 0
-  self.Animation = function (timestamp) {
-    const progress = timestamp - lastTimestamp;
-
-    if (progress > 1000) {
-      lastTimestamp = timestamp;
-
-      self.Odd = !self.Odd;
-      self.Render();
-    }
-
-    window.requestAnimationFrame(self.Animation);
-  }
-
-  window.requestAnimationFrame(self.Animation)
 
   self.Reset = function () {
     self.Level = [];
@@ -98,7 +81,6 @@ function NewGameRendererCanvas () {
 
   self.SetRobo = function (Robo) {
     self.Robo = Robo;
-    self.Odd = false;
     self.Render();
   }
 
@@ -116,31 +98,12 @@ function NewGameRendererCanvas () {
         fieldNumber = rows[y];
 
         if (self.Robo != null && x === self.Robo.x && y === self.Robo.y) {
-          if (fieldNumber === 5) {
-            if (self.Odd) {
-              self.Ctx.drawImage(self.Images['field_5'], y*64, x*64)
-              drawRobo = false;
-            } else {
-              self.Ctx.drawImage(self.Images['field_2'], y*64, x*64)              
-            }
-          } else if (fieldNumber === 4) {
-            self.Ctx.drawImage(self.Images['field_2'], y*64, x*64)
-          } else if (fieldNumber === 0) {
-            if (self.Odd) {
-              self.Ctx.drawImage(self.Images['field_0'], y*64, x*64)
-              drawRobo = false;
-            }
-          } else if (fieldNumber === 9) {
-            if (self.Odd) {
-              self.Ctx.drawImage(self.Images['field_9'], y*64, x*64)
-              drawRobo = false;
-            } else {
-              self.Ctx.drawImage(self.Images['field_2'], y*64, x*64)
-            }
+          if (fieldNumber === 5 || fieldNumber === 4) {
+            self.Ctx.drawImage(self.Images['field_2'], y*64, x*64);
           }
-        } else {
-          self.Ctx.drawImage(self.Images['field_' + fieldNumber], y*64, x*64)          
         }
+
+        self.Ctx.drawImage(self.Images['field_' + fieldNumber], y*64, x*64);
       }
     });
 
