@@ -1,11 +1,6 @@
+// Lava Tutorial Lvl 5
 {
   "Tracks": [
-    {
-      "Name": "Drehen",
-      "Action": "turnright",
-      "Sound": "openhat",
-      "Show": true
-    },
     {
       "Name": "Laufen",
       "Action": "move",
@@ -13,20 +8,26 @@
       "Show": true
     },
     {
+      "Name": "Warten",
+      "Action": "wait",
+      "Sound": "openhat2",
+      "Show": true
+    },
+    {
       "Name": "Lava",
       "Action": "lava",
       "Sound": "none",
       "Show": false,
-      "Pattern": [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0]
+      "Pattern": [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
     }
   ],
   "Ticks": 16,
-  "Width": 4,
+  "Width": 3,
   "Height": 4,
   "Level": [
-    [2, 2, 2, 2],
-    [2, 0, 0, 2],
-    [2, 4, 2, 2],
-    [1, 0, 0, 9]
+    [0, 9, 0],
+    [0, 4, 0],
+    [0, 2, 0],
+    [0, 1, 0]
   ]
 }
