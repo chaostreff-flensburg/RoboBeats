@@ -53,64 +53,16 @@ function NewGamearea () {
       self.Reset();
     }
 
-    var status = 1;
+    // Update Level
     for (var i = 0; i < Columns.length; i++) {
       const columnValue = Columns[i]
       const track = self.Tracks[i]
 
-      if (track.Show && columnValue > 0) {
-        switch (track.Action) {
-          case 'move':
-            switch (self.Robo.d) {
-              case 'top': self.Robo.x -= 1; break;
-              case 'down': self.Robo.x += 1; break;
-              case 'left': self.Robo.y -= 1; break;
-              case 'right': self.Robo.y += 1; break;
-            }
-            if (self.Robo.x < 0 || self.Robo.y < 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 0 || self.LevelClone[self.Robo.x][self.Robo.y] === 4 || self.LevelClone[self.Robo.x][self.Robo.y] === 3) {
-              status = -1;
-              self.ErrorFn();
-            } else if (self.LevelClone[self.Robo.x][self.Robo.y] === 9) {
-              self.SuccessFn();
-            }
-            break;
-          case 'turnleft':
-            if (self.Map.Level[self.Robo.x][self.Robo.y] === 8) { status = -1; self.ErrorFn(); }
-            switch (self.Robo.d) {
-              case 'top': self.Robo.d = 'left'; break;
-              case 'down': self.Robo.d = 'right'; break;
-              case 'left': self.Robo.d = 'down'; break;
-              case 'right': self.Robo.d = 'top'; break;
-            }
-            break;
-          case 'turnright':
-            if (self.Map.Level[self.Robo.x][self.Robo.y] === 8) { status = -1; self.ErrorFn();}
-            switch (self.Robo.d) {
-              case 'top': self.Robo.d = 'right'; break;
-              case 'down': self.Robo.d = 'left'; break;
-              case 'left': self.Robo.d = 'top'; break;
-              case 'right': self.Robo.d = 'down'; break;
-            }
-            break;
-          case 'wait':
-            switch (self.Map.Level[self.Robo.x][self.Robo.y]) {
-              case 6: self.Map.Level.forEach((rows, x) => {
-                rows.forEach((v, y) => {
-                  if (v === 7) {
-                    self.LevelClone[x][y] = 2; // Setze Buttonfeld auf 2 (Boden)
-                  }
-                });
-              }); break;
-              case 8: status = -1; self.ErrorFn();
-            }
-            break;
-        }
-
-        continue
+      if (track.Show) {
+        continue;
       }
 
-      // invisible pattern
-      if (track.Action === "lava") { // Lava Aktiv setzen
+      if (track.Action === "lava") {
         if (!track.hasOwnProperty("Pattern")) {
           continue;
         }
@@ -127,8 +79,90 @@ function NewGamearea () {
       }
     }
 
-    return status;
+    // Update Enemies
+    
+    // Update Player
+    for (var i = 0; i < Columns.length; i++) {
+      const track = self.Tracks[i]
+
+      if (!track.Show || Columns[i] === 0) {
+        continue;
+      }
+
+      self.Robo = self.UpdateEnemy(track.Action, self.Robo)
+    }
+
+    return self.CollisionDetection(self.Robo);
   };
+
+  self.CollisionDetection = function (enemy) {
+    const x = enemy.x;
+    const y = enemy.y;
+
+    // level not loaded
+    if (self.LevelClone.length === 0) {
+      return 1;
+    }
+
+    // out of field
+    if (x < 0 || y < 0 || x >= self.LevelClone.length || y >= self.LevelClone[0].length) {
+      self.ErrorFn();
+      return -1;
+    }
+
+    const currentField = self.LevelClone[x][y];
+
+    // win detection
+    if (currentField === 9) {
+      self.SuccessFn();
+      return 1;
+    }
+
+    // lava detection
+    if (currentField === 5) {
+      self.ErrorFn();
+      return -1;
+    }
+
+    // nothing / wall
+    if (currentField === 0 || currentField === 3) {
+      self.ErrorFn();
+      return -1;
+    }
+    
+    return status;
+  }
+
+  self.UpdateEnemy = function (action, enemy) {
+    switch (action) {
+      case 'move':
+        switch (enemy.d) {
+          case 'top': enemy.x -= 1; break;
+          case 'down': enemy.x += 1; break;
+          case 'left': enemy.y -= 1; break;
+          case 'right': enemy.y += 1; break;
+        }
+        break;
+      case 'turnleft':
+        switch (enemy.d) {
+          case 'top': enemy.d = 'left'; break;
+          case 'down': enemy.d = 'right'; break;
+          case 'left': enemy.d = 'down'; break;
+          case 'right': enemy.d = 'top'; break;
+        }
+        break;
+      case 'turnright':
+        switch (enemy.d) {
+          case 'top': enemy.d = 'right'; break;
+          case 'down': enemy.d = 'left'; break;
+          case 'left': enemy.d = 'top'; break;
+          case 'right': enemy.d = 'down'; break;
+        }
+        break;
+    }
+
+    return enemy;
+  }
 
   return self;
 }
