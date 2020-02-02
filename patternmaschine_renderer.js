@@ -60,7 +60,7 @@ function NewPatternmaschineRenderer() {
   }
 
   self.createPatternmachine = function () {
-    const w = 124 + self.ticks * 60;
+    const w = 60 + self.ticks * 60;
     const h = self.tracks.length * 60 + 60;
     var div = document.getElementById('patternmachine');
     var svg = document.createElementNS(ns, 'svg');
@@ -70,7 +70,7 @@ function NewPatternmaschineRenderer() {
     div.appendChild(svg);
 
     for (let i = 0; i < self.tracks.length; i++) {
-      svg.appendChild(self.createTrack(i, self.tracks[i].Name));
+      svg.appendChild(self.createTrack(i, self.tracks[i].Action));
     }
 
     svg.appendChild(self.createLabels());
@@ -91,6 +91,34 @@ function NewPatternmaschineRenderer() {
     return svg;
   }
 
+  function createMoveIcon () {
+    var svg = document.createElementNS(ns, 'svg');
+    svg.setAttributeNS(null, 'x', -1);
+    svg.setAttributeNS(null, 'y', 3);
+
+    var path1 = document.createElementNS(ns, 'path');
+    path1.setAttributeNS(null, 'd', 'M35.15,34.55h10.5s0,5.9-5.25,5.9S35.15,34.55,35.15,34.55Z');
+    path1.setAttribute('fill', '#fff');
+    svg.appendChild(path1)
+
+    var path2 = document.createElementNS(ns, 'path');
+    path2.setAttributeNS(null, 'd', 'M35.26,32.58h10.5s.4-8.5.65-11.81C47,13.56,45,7,39.09,7c-5.25,0-5.48,9.72-5.25,11.81C34.5,24.71,35.15,26.68,35.26,32.58Z');
+    path2.setAttribute('fill', '#fff');
+    svg.appendChild(path2)
+
+    var path3 = document.createElementNS(ns, 'path');
+    path3.setAttributeNS(null, 'd', 'M29.09,46.18,18.87,48.54s1.32,5.75,6.44,4.57S29.09,46.18,29.09,46.18Z');
+    path3.setAttribute('fill', '#fff');
+    svg.appendChild(path3)
+
+    var path4 = document.createElementNS(ns, 'path');
+    path4.setAttributeNS(null, 'd', 'M28.54,44.29,18.32,46.65S16,38.46,15,35.29c-2.15-6.91-1.71-13.74,4-15.07,5.11-1.18,7.53,8.24,7.77,10.32C27.52,36.44,27.32,38.51,28.54,44.29Z');
+    path4.setAttribute('fill', '#fff');
+    svg.appendChild(path4)
+
+    return svg;
+  }
+
   function createTrackName (trackNumber, trackName) {
     var svg = document.createElementNS(ns, 'svg');
     svg.setAttributeNS(null, 'x', 0);
@@ -99,28 +127,28 @@ function NewPatternmaschineRenderer() {
 
     // background
     const id = 'trackname_' + trackNumber + '_bg';
-	  const rect = NewSVG(id).Position(0, 5).Size(124, 58).Class('trackname_bg').Rect();
+	  const rect = NewSVG(id).Position(0, 5).Size(60, 58).Class('trackname_bg').Rect();
 
 	  svg.appendChild(rect);
 
-    // text
-    var text = document.createElementNS(ns, 'text');
-    text.setAttributeNS(null, 'width', 124);
-    text.setAttributeNS(null, 'height', 60);
-    text.setAttributeNS(null, 'x', 61);
-    text.setAttributeNS(null, 'y', 36);
-    text.setAttributeNS(null, 'text-anchor', 'middle');
-	  text.setAttributeNS(null, 'font-size', '16px');
-	  text.textContent = trackName;
-	  text.setAttribute("fill", "white");
-    svg.appendChild(text);
+    if (trackName === "move") {
+      svg.appendChild(createMoveIcon())
+    } else if (trackName === "turnleft") {
+      const polygon = NewSVG().Position(2, 1).Class('play').Polygon("37 49 37 25 25 25 25 33 17 23 25 13 25 21 41 21 41 49 37 49");
+      polygon.setAttribute('fill', '#fff');
+      svg.appendChild(polygon)
+    } else if (trackName === "turnright") {
+      const polygon = NewSVG().Position(2, 1).Class('play').Polygon("24 49 24 25 36 25 36 33 44 23 36 13 36 21 20 21 20 49 24 49");
+      polygon.setAttribute('fill', '#fff');
+      svg.appendChild(polygon)
+    }
 
     return svg;
   }
 
   self.createTick = function (trackNumber, tickNumber) {
     const id = 'tick_' + trackNumber + '_' + tickNumber;
-    const rect = NewSVG(id).Position(126 + tickNumber * 60, 5).Size(58, 58).Class('tick').Rect()
+    const rect = NewSVG(id).Position(62 + tickNumber * 60, 5).Size(58, 58).Class('tick').Rect()
 
     rect.addEventListener('click', self.toggleTick);
 
@@ -136,7 +164,7 @@ function NewPatternmaschineRenderer() {
     for (var i = 0; i < self.ticks; i++) {
       // text
       var text = document.createElementNS(ns, 'text');
-      text.setAttributeNS(null, 'x', 126 + i * 60 + 30);
+      text.setAttributeNS(null, 'x', 62 + i * 60 + 30);
       text.setAttributeNS(null, 'y', 25);
       text.setAttributeNS(null, 'width', 58);
       text.setAttributeNS(null, 'height', 58);
