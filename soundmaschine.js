@@ -9,13 +9,16 @@ function NewSoundMaschine() {
       toggleTick: null,
       playTick: null,
       changedPlaymode: null,
-    }
+    },
+    winSoundPlayed: false
   }
 
   self.sampler = new Tone.Players({
     kick: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/kick.[ogg]',
     openhat: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/openhat.[ogg]',
-    openhat2: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/openhat.[ogg]'
+    openhat2: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/openhat.[ogg]',
+    lose: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/lose.[ogg]',
+    win: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/win.[ogg]',
   }, {
     volume: 0,
     fadeOut: '64n'
@@ -89,6 +92,7 @@ function NewSoundMaschine() {
     }, startColumns);
 
     if (self.onFn.setMap != null) {
+      self.winSoundPlayed = false;
       self.onFn.setMap(map);
     }
   }
@@ -120,6 +124,19 @@ function NewSoundMaschine() {
     if (self.onFn.changedPlaymode(self.playing) != null) {
       self.onFn.changedPlaymode(self.playing)
     }
+  }
+
+  self.Success = function () {
+    if (self.winSoundPlayed) {
+      return
+    }
+
+    self.winSoundPlayed = true;
+    self.sampler.get("win").start();
+  }
+
+  self.Error = function () {
+    self.sampler.get("lose").start();
   }
 
   self.ToggleTick = function (trackNumber, tickNumber) {

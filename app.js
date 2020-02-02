@@ -94,9 +94,11 @@ hub.onSetMap((map, number) => {
 gamearea.onError(() => {
   // Error only stop
   sound.TogglePlay();
+  sound.Error();
 });
 gamearea.onSuccess(() => {
   nextLevel.innerHTML = 'Load next Level';
+  sound.Success();
 });
 
 // GameRenderer
