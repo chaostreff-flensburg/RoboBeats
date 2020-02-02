@@ -3,19 +3,19 @@
     {
       "Name": "Rechts Drehen",
       "Action": "turnright",
-      "Sound": "openhat",
+      "Sound": "turnright",
       "Show": true
     },
     {
       "Name": "Links Drehen",
       "Action": "turnleft",
-      "Sound": "openhat",
+      "Sound": "turnleft",
       "Show": true
     },
     {
       "Name": "Laufen",
       "Action": "move",
-      "Sound": "kick",
+      "Sound": "move",
       "Show": true
     }
   ],

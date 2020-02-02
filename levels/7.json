@@ -3,13 +3,13 @@
     {
       "Name": "Drehen",
       "Action": "turnright",
-      "Sound": "openhat",
+      "Sound": "turnright",
       "Show": true
     },
     {
       "Name": "Laufen",
       "Action": "move",
-      "Sound": "kick",
+      "Sound": "move",
       "Show": true
     },
     {

@@ -14,11 +14,11 @@ function NewSoundMaschine() {
   }
 
   self.sampler = new Tone.Players({
-    kick: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/kick.[ogg]',
-    openhat: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/openhat.[ogg]',
-    openhat2: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/openhat.[ogg]',
     lose: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/lose.[ogg]',
     win: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/win.[ogg]',
+    move: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/slowkick.[ogg]',
+    turnleft: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/left.[ogg]',
+    turnright: 'https://raw.githubusercontent.com/chaostreff-flensburg/RoboBeats/master/sounds/right.[ogg]'
   }, {
     volume: 0,
     fadeOut: '64n'
