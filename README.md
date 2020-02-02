@@ -11,3 +11,6 @@ Just use your mouse to select/deselect the sound tiles. Everytime the beat hits 
 
 ## References
 * https://github.com/Tonejs/Tone.js?utm_source=recordnotfound.com
+
+## License
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](http://creativecommons.org/licenses/by-nc-sa/4.0/) or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
