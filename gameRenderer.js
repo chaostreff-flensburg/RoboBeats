@@ -1,4 +1,4 @@
-function NewGameRenderer () {
+function NewGameRenderer() {
   const self = {
     Level: []
   };
@@ -31,8 +31,8 @@ function NewGameRendererCanvas () {
 
   const self = {
     Level: [],
-    Width: 4*60,
-    Height: 4*60,
+    Width: 4 * 60,
+    Height: 4 * 60,
     Canvas: canvas,
     Ctx: canvas.getContext('2d'),
     Images: {},
@@ -51,7 +51,7 @@ function NewGameRendererCanvas () {
     'robot_down',
     'robot_left',
     'robot_right',
-    'robot_top',
+    'robot_top'
   ]
 
   self.Reset = function () {
@@ -61,7 +61,7 @@ function NewGameRendererCanvas () {
   self.SetState = function (LevelClone) {
     // need resize?
     const w = LevelClone.length;
-    const h = (w > 0)?LevelClone[0].length:0;
+    const h = (w > 0) ? LevelClone[0].length : 0;
 
     self.Resize(w, h);
 
@@ -70,49 +70,49 @@ function NewGameRendererCanvas () {
 
   self.Resize = function (w, h) {
     if (self.Width === h && self.Height === w) {
-      return
+      return;
     }
 
     self.Width = h;
     self.Height = w;
-    self.Canvas.width = h*64;
-    self.Canvas.height = w*64;
-  }
+    self.Canvas.width = h * 64;
+    self.Canvas.height = w * 64;
+  };
 
   self.SetRobo = function (Robo) {
     self.Robo = Robo;
     self.Render();
-  }
+  };
 
   self.Render = function () {
     if (self.LoadedImages < self.ImagesSrcs.length) {
-      return
+      return;
     }
 
     self.Ctx.clearRect(0, 0, self.Canvas.width, self.Canvas.height);
 
     // Level
-    let drawRobo = true;
+    const drawRobo = true;
     self.Level.forEach((rows, x) => {
       for (var y = 0; y < rows.length; y++) {
-        fieldNumber = rows[y];
+        const fieldNumber = rows[y];
 
         if (self.Robo != null && x === self.Robo.x && y === self.Robo.y) {
           if (fieldNumber === 5 || fieldNumber === 4) {
-            self.Ctx.drawImage(self.Images['field_2'], y*64, x*64);
+            self.Ctx.drawImage(self.Images['field_2'], y * 64, x * 64);
           } else if (fieldNumber === 0) {
-            self.Ctx.drawImage(self.Images['field_5'], y*64, x*64);
+            self.Ctx.drawImage(self.Images['field_5'], y * 64, x * 64);
             continue;
           }
         }
 
-        self.Ctx.drawImage(self.Images['field_' + fieldNumber], y*64, x*64);
+        self.Ctx.drawImage(self.Images['field_' + fieldNumber], y * 64, x * 64);
       }
     });
 
     // Robo
     if (self.Robo != null && drawRobo) {
-      self.Ctx.drawImage(self.Images['robot_' + self.Robo.d], self.Robo.y*64, self.Robo.x*64)
+      self.Ctx.drawImage(self.Images['robot_' + self.Robo.d], self.Robo.y * 64, self.Robo.x * 64)
     }
   };
 
@@ -121,16 +121,16 @@ function NewGameRendererCanvas () {
       const src = self.ImagesSrcs[i]
 
       const img = new Image();
-      img.addEventListener ("load", () => {
-        self.LoadedImages++
-        self.Render()
-      })
+      img.addEventListener('load', () => {
+        self.LoadedImages++;
+        self.Render();
+      });
 
-      img.src = 'media/' + src + '.png'
+      img.src = 'media/' + src + '.png';
 
-      self.Images[src] = img
+      self.Images[src] = img;
     }
-  }
+  };
 
   return self;
 }
