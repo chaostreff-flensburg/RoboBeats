@@ -11,6 +11,13 @@
       "Action": "move",
       "Sound": "kick",
       "Show": true
+    },
+    {
+      "Name": "Lava",
+      "Action": "lava",
+      "Sound": "none",
+      "Show": false,
+      "Pattern": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
     }
   ],
   "Ticks": 16,
