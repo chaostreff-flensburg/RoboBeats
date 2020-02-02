@@ -1,0 +1,3 @@
+[build]
+publish = "."
+ignore = "git diff --quiet HEAD^ HEAD raw/"
