@@ -1,0 +1,38 @@
+{
+  "Tracks": [
+    {
+      "Name": "Turn Right",
+      "Action": "turnright",
+      "Sound": "turnright",
+      "Show": true
+    },
+    {
+      "Name": "Turn Left",
+      "Action": "turnleft",
+      "Sound": "turnleft",
+      "Show": true
+    },
+    {
+      "Name": "Move",
+      "Action": "move",
+      "Sound": "move",
+      "Show": true
+    },
+  {
+      "Name": "Lava",
+      "Action": "lava",
+      "Sound": "none",
+      "Show": false,
+      "Pattern": [0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0]
+    }
+  ],
+  "Ticks": 16,
+  "Width": 3,
+  "Height": 9,
+  "Level": [
+    [2, 2, 2, 2, 0, 2, 2, 2, 0],
+    [2, 0, 0, 2, 0, 2, 0, 9, 0],
+    [1, 0, 0, 2, 0, 2, 0, 0, 0],
+    [0, 0, 0, 2, 2, 2, 0, 0, 0]
+  ]
+}
