@@ -1,19 +1,19 @@
 {
   "Tracks": [
     {
-      "Name": "Rechts Drehen",
+      "Name": "Turn Right",
       "Action": "turnright",
       "Sound": "turnright",
       "Show": true
     },
     {
-      "Name": "Links Drehen",
+      "Name": "Turn Left",
       "Action": "turnleft",
       "Sound": "turnleft",
       "Show": true
     },
     {
-      "Name": "Laufen",
+      "Name": "Move",
       "Action": "move",
       "Sound": "move",
       "Show": true

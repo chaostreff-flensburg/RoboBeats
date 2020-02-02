@@ -1,13 +1,13 @@
 {
   "Tracks": [
     {
-      "Name": "Drehen",
+      "Name": "Turn",
       "Action": "turnright",
       "Sound": "turnright",
       "Show": true
     },
     {
-      "Name": "Laufen",
+      "Name": "Move",
       "Action": "move",
       "Sound": "move",
       "Show": true

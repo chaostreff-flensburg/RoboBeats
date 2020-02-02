@@ -1,7 +1,7 @@
 {
   "Tracks": [
     {
-      "Name": "Laufen",
+      "Name": "Move",
       "Action": "move",
       "Sound": "move",
       "Show": true
