@@ -13,8 +13,9 @@ You can open an editor to create your own levels.
 
 #### Explanation
 * Fields
+
 | 0 | 1 | 2 | 4 | 5 | 9 |
-| -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- | -------- |
 | Abyss     | Player     | Ground     | Active Lava     | Inactive Lava     | Goal |
 
 * Tracks
