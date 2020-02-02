@@ -1,4 +1,6 @@
 # RoboBeats
+https://robobeats.de/
+
 Global Game Jam 2020
 
 ## The Game
@@ -19,7 +21,7 @@ You can open an editor to create your own levels.
 | Abyss     | Player     | Ground     | Active Lava     | Inactive Lava     | Goal |
 
 * Tracks
-Move, Turn Left, Turn Right (more added in the future!)
+  * Move, Turn Left, Turn Right (more added in the future!)
 
 ## Dependencies
 * https://github.com/Tonejs/Tone.js?utm_source=recordnotfound.com
