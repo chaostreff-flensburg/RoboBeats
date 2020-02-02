@@ -1,0 +1,45 @@
+//Right and left turn with lava action
+{
+  "Tracks": [
+    {
+      "Name": "Rechts Drehen",
+      "Action": "turnright",
+      "Sound": "openhat",
+      "Show": true
+    },
+    {
+      "Name": "Links Drehen",
+      "Action": "turnleft",
+      "Sound": "openhat", //toDo: sound
+      "Show": true
+    },
+    {
+      "Name": "Warten",
+      "Action": "wait",
+      "Sound": "openhat2",
+      "Show": true
+    },
+    {
+      "Name": "Laufen",
+      "Action": "move",
+      "Sound": "kick",
+      "Show": true
+    },
+   {
+      "Name": "Lava",
+      "Action": "lava",
+      "Sound": "none",
+      "Show": false,
+      "Pattern": [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0]
+    }
+  ],
+  "Ticks": 16,
+  "Width": 3,
+  "Height": 4,
+  "Level": [
+    [2, 2, 2, 0],
+    [1, 0, 2, 0],
+    [0, 0, 4, 2],
+    [0, 0, 0, 9]
+  ]
+}
